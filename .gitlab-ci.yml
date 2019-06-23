@@ -1,0 +1,12 @@
+image: docker:git
+services:
+  - docker:dind
+
+stages:
+  - build
+#  - publish
+
+before_script:
+  - export CI_BUILD_DATE=$(date -u +%Y%m%d-%H%M%S)
+  - export CI_DOCKER_IMAGE_VERSION=$CI_BUILD_DATE.${CI_COMMIT_SHA:0:8}
+
